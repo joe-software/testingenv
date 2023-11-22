@@ -7,17 +7,9 @@ function smileyCount(arr){
     let count = 0
     arr.forEach(item => {
         let correctFormat = true
-        if(item.length > 3){
-            correctFormat = false
-        }
-        if(item[0] != ':' && item[0] != ';'){
+    
+        if((item[0] != ':' && item[0] != ';') || (item.length == 3 && item[1] != '~' && item[1] != '-') || (item[item.length -1] != 'D' && item[item.length -1] != ')') || (item.length > 3)){
             correctFormat = false    
-        }
-        if(item.length == 3 && item[1] != '~' && item[1] != '-'){
-            correctFormat = false
-        }
-        if(item[item.length -1] != 'D' && item[item.length -1] != ')'){
-            correctFormat = false
         }
         if(correctFormat == true){
             count = count + 1
@@ -25,7 +17,6 @@ function smileyCount(arr){
     })
     return count
 }
-smileyCount(':)', ':-)', ':^)', ':~)')
 
 test('is an array', () => {
     expect(smileyCount('')).toBe(false)
